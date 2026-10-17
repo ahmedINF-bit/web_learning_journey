@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#03152d" />
+  <title>Talaba AI | مساعدك الدراسي</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+  <section class="auth-screen" id="authScreen" aria-label="تسجيل الدخول">
+    <div class="auth-card">
+      <a class="brand auth-brand" href="#" aria-label="Talaba AI">
+        <span class="brand-mark"><i data-lucide="graduation-cap"></i></span><span>Talaba AI</span>
+      </a>
+      <div class="auth-intro">
+        <h1 id="authTitle">مرحباً بعودتك</h1>
+        <p class="muted" id="authSubtitle">سجّل الدخول لمتابعة رحلتك الدراسية</p>
+      </div>
+      <form id="loginForm" class="auth-form">
+        <label>البريد الإلكتروني<input type="email" id="loginEmail" autocomplete="email" required placeholder="name@example.com"></label>
+        <label>كلمة المرور<input type="password" id="loginPassword" autocomplete="current-password" required minlength="6" placeholder="أدخل كلمة المرور"></label>
+        <button class="auth-submit" type="submit">تسجيل الدخول <i data-lucide="log-in"></i></button>
+        <p class="auth-switch">ليس لديك حساب؟ <button type="button" class="link-btn" id="showRegister">إنشاء حساب جديد</button></p>
+      </form>
+      <form id="registerForm" class="auth-form hidden">
+        <label>اسم المستخدم<input type="text" id="registerName" autocomplete="name" required minlength="2" maxlength="40" placeholder="اكتب اسمك"></label>
+        <label>البريد الإلكتروني<input type="email" id="registerEmail" autocomplete="email" required placeholder="name@example.com"></label>
+        <label>كلمة المرور<input type="password" id="registerPassword" autocomplete="new-password" required minlength="6" placeholder="6 أحرف على الأقل"></label>
+        <label>المستوى الدراسي
+          <select id="registerLevel" required>
+            <option value="middle">التعليم المتوسط</option>
+            <option value="secondary">التعليم الثانوي</option>
+            <option value="university" selected>الجامعة</option>
+            <option value="master">ماستر</option>
+            <option value="other">مستوى آخر</option>
+          </select>
+        </label>
+        <label id="registerYearLabel">السنة الدراسية
+          <select id="registerYear" required>
+            <option value="1">السنة الأولى ليسانس (L1)</option>
+            <option value="2">السنة الثانية ليسانس (L2)</option>
+            <option value="3">السنة الثالثة ليسانس (L3)</option>
+          </select>
+        </label>
+        <label>تأكيد كلمة المرور<input type="password" id="registerConfirm" autocomplete="new-password" required minlength="6" placeholder="أعد كتابة كلمة المرور"></label>
+        <button class="auth-submit" type="submit">إنشاء الحساب <i data-lucide="user-plus"></i></button>
+        <p class="auth-switch">لديك حساب بالفعل؟ <button type="button" class="link-btn" id="showLogin">تسجيل الدخول</button></p>
+      </form>
+      <p class="auth-note">نسخة تجريبية: الحساب محفوظ في هذا المتصفح فقط. يلزم Backend ومصادقة آمنة قبل الإطلاق الحقيقي.</p>
+    </div>
+  </section>
+
+  <div class="app-shell" id="appShell">
+    <aside class="sidebar">
+      <a class="brand" href="#" aria-label="Talaba AI">
+        <span class="brand-mark"><i data-lucide="graduation-cap"></i></span>
+        <span>Talaba AI</span>
+      </a>
+      <nav class="nav-list" aria-label="التنقل الرئيسي">
+        <button class="nav-item active" data-page="home"><i data-lucide="house"></i><span>الرئيسية</span></button>
+        <button class="nav-item" data-page="assistant"><i data-lucide="bot"></i><span>المساعد الذكي</span></button>
+        <button class="nav-item" data-page="exams"><i data-lucide="clipboard-list"></i><span>الاختبارات</span></button>
+        <button class="nav-item" data-page="schedule"><i data-lucide="calendar-days"></i><span>جدول التنظيم</span></button>
+        <button class="nav-item" data-page="library"><i data-lucide="library"></i><span>المكتبة الدراسية</span></button>
+        <button class="nav-item" data-page="focus"><i data-lucide="timer"></i><span>وضع التركيز</span></button>
+        <div class="nav-separator"></div>
+        <button class="nav-item" data-page="settings"><i data-lucide="settings"></i><span>الإعدادات</span></button>
+        <button class="nav-item" data-page="help"><i data-lucide="circle-help"></i><span>المساعدة</span></button>
+        <button class="nav-item" data-page="account"><i data-lucide="circle-user-round"></i><span>الحساب</span></button>
+      </nav>
+      <div class="motivation">
+        <p>خطوة صغيرة كل يوم<br>تصنع فرقاً كبيراً</p>
+        <div class="mountain"><i data-lucide="flag"></i></div>
+      </div>
+    </aside>
+
+    <main class="main-area">
+      <header class="topbar">
+        <div class="top-actions">
+          <button class="icon-btn" title="الإشعارات" id="notifications"><i data-lucide="bell"></i><span class="dot"></span></button>
+          <button class="icon-btn" title="ملء الشاشة" id="fullscreen"><i data-lucide="maximize"></i></button>
+          <button class="icon-btn" title="تبديل المظهر" id="themeToggle"><i data-lucide="moon"></i></button>
+        </div>
+        <label class="search-box"><i data-lucide="search"></i><input id="globalSearch" placeholder="ابحث عن أي شيء..." /></label>
+      </header>
+
+      <section class="page active" id="page-home">
+        <div class="welcome-row">
+          <div>
+            <p class="eyebrow" id="todayLabel">أهلاً بك في يوم دراسي جديد</p>
+            <h1>مرحباً بعودتك، <span class="gradient-text" id="welcomeName">طالب</span> 👋</h1>
+            <p class="muted">نظم دراستك اليوم، واصنع مستقبلك خطوة بخطوة.</p>
+          </div>
+          <button class="avatar avatar-button" data-go="account" aria-label="الملف الشخصي">👤</button>
+        </div>
+        <div class="stats-grid">
+          <article class="stat-card blue"><div class="stat-head"><span class="stat-icon"><i data-lucide="book-open"></i></span><div><h3>الالتزام</h3><p>نسبة إنجاز خطة الدراسة</p></div></div><div class="stat-value" id="dashCompletion">0%</div><div class="progress"><span id="dashCompletionBar" style="width:0%"></span></div></article>
+          <article class="stat-card purple"><div class="stat-head"><span class="stat-icon"><i data-lucide="target"></i></span><div><h3>النتائج</h3><p>متوسط العلامات</p></div></div><div class="stat-value" id="dashExamScore">— / 20</div><div class="progress"><span id="dashExamBar" style="width:0%"></span></div></article>
+          <article class="stat-card green"><div class="stat-head"><span class="stat-icon"><i data-lucide="clock"></i></span><div><h3>ساعات الدراسة</h3><p>إجمالي ساعات هذا الأسبوع</p></div></div><div class="stat-value" id="dashStudyTime">0 د</div><div class="progress"><span id="dashStudyBar" style="width:0%"></span></div></article>
+          <article class="stat-card amber"><div class="stat-head"><span class="stat-icon"><i data-lucide="brain"></i></span><div><h3>نقاط الضعف</h3><p>مواضيع تحتاج إلى تركيز</p></div></div><div class="stat-value" id="dashWeakTopics">0</div><div class="progress"><span id="dashWeakBar" style="width:0%"></span></div></article>
+        </div>
+        <div class="home-shortcuts">
+          <article class="panel next-step-card">
+            <div class="section-heading"><div><i data-lucide="compass"></i><h2>ماذا أدرس الآن؟</h2></div><span class="pill">اقتراح اليوم</span></div>
+            <p id="nextStepText">أضف مهامك وجدولك ليقترح التطبيق الخطوة التالية.</p>
+            <div class="shortcut-actions"><button class="auth-submit" id="startRecommended">ابدأ جلسة تركيز <i data-lucide="arrow-left"></i></button><button class="outline-btn" data-go="schedule">عرض المهام</button></div>
+          </article>
+        </div>
+        <article class="panel activity-panel">
+          <div class="section-heading"><div><i data-lucide="chart-no-axes-column-increasing"></i><h2>نشاطك الدراسي</h2></div><div class="tabs"><button class="tab active" data-range="weekly">أسبوعي</button><button class="tab" data-range="monthly">شهري</button></div></div>
+          <div class="activity-list" id="activityList"></div>
+          <div class="panel-foot"><span>🎯 أنت أقرب لهدفك</span><span class="pill">استمر على هذا النمط</span></div>
+        </article>
+      </section>
+
+      <section class="page" id="page-assistant">
+        <div class="hero-assistant">
+          <div class="bot-art"><i data-lucide="bot"></i><span class="chat-bubble">•••</span></div>
+          <div><h1>مرحباً بك في مساعدك الذكي</h1><h2 class="gradient-text">Talaba AI</h2><p class="muted">أنا هنا لمساعدتك في دراستك، أجيب على أسئلتك، أشرح لك الدروس، وأقدم لك نصائح مخصصة لنجاحك.</p></div>
+        </div>
+        <div class="assistant-controls panel">
+          <label>المادة <input id="assistantSubject" placeholder="مثال: الخوارزميات"></label>
+          <label>طريقة المساعدة <select id="assistantMode"><option value="teach">علّمني ولا تعطيني الحل مباشرة</option><option value="explain">شرح مبسط</option><option value="steps">حل خطوة بخطوة</option><option value="quiz">اختبرني في الدرس</option></select></label>
+          <button class="outline-btn" id="clearChat">مسح المحادثة</button>
+        </div>
+        <div class="quick-actions">
+          <button class="quick-card blue" data-prompt="اشرح لي هذا الدرس بشكل مبسط"><i data-lucide="book-open"></i><span><b>شرح درس</b><small>بشكل مبسط</small></span></button>
+          <button class="quick-card purple" data-prompt="ساعدني في حل تمرين خطوة بخطوة"><i data-lucide="lightbulb"></i><span><b>حل تمرين</b><small>خطوة بخطوة</small></span></button>
+          <button class="quick-card green" data-prompt="أنشئ لي خطة دراسة مخصصة"><i data-lucide="calendar-days"></i><span><b>خطة دراسة</b><small>مخصصة لك</small></span></button>
+          <button class="quick-card amber" data-prompt="أريد أن أسأل عن الدراسة أو المنهج"><i data-lucide="circle-help"></i><span><b>اسأل أي شيء</b><small>عن الدراسة أو المنهج</small></span></button>
+        </div>
+        <div class="chat-panel panel">
+          <div class="chat-empty" id="chatMessages"><div class="chat-symbol">•••</div><h2>ابدأ محادثة الآن</h2><p class="muted">اكتب سؤالك أو اختر من الاقتراحات أعلاه</p></div>
+          <form class="chat-composer" id="chatForm"><button type="button" class="icon-btn" id="attachBtn" title="إرفاق ملف"><i data-lucide="paperclip"></i></button><input id="chatInput" placeholder="اكتب سؤالك هنا..." autocomplete="off" /><button class="send-btn" type="submit" aria-label="إرسال"><i data-lucide="send"></i></button></form>
+        </div>
+      </section>
+
+      <section class="page" id="page-schedule">
+        <div class="page-heading"><div><h1>جدول التنظيم</h1><p class="muted">خطط وقتك، وحقق أهدافك</p></div><span class="heading-icon"><i data-lucide="calendar-days"></i></span></div>
+        <div class="stats-grid compact">
+          <article class="stat-card purple"><h3>الالتزام الأسبوعي</h3><div class="stat-value">4 / 7</div><div class="progress"><span style="width:57%"></span></div></article>
+          <article class="stat-card green"><h3>ساعات الدراسة اليوم</h3><div class="stat-value">1h 35m</div><div class="progress"><span style="width:55%"></span></div></article>
+          <article class="stat-card blue"><h3>المواد الدراسية</h3><div class="stat-value">6</div><p class="muted">المواد المسجلة</p></article>
+          <article class="stat-card amber"><h3>المهام القادمة</h3><div class="stat-value" id="taskCount">3</div><p class="muted">مهام هذا الأسبوع</p></article>
+        </div>
+        <article class="panel schedule-editor">
+          <div class="section-heading"><div><i data-lucide="calendar-plus"></i><h2>أضف حصص جدولك</h2></div><span class="muted">أدخل موادك وأوقاتها بنفسك</span></div>
+          <form id="scheduleForm" class="schedule-form">
+            <label>اسم المادة<input id="subjectInput" required maxlength="60" placeholder="مثال: الخوارزميات"></label>
+            <label>اليوم<select id="dayInput" required>
+              <option value="الاثنين">الاثنين</option><option value="الثلاثاء">الثلاثاء</option><option value="الأربعاء">الأربعاء</option><option value="الخميس">الخميس</option><option value="الجمعة">الجمعة</option><option value="السبت">السبت</option><option value="الأحد">الأحد</option>
+            </select></label>
+            <label>من<input id="startInput" type="time" value="08:00" required></label>
+            <label>إلى<input id="endInput" type="time" value="10:00" required></label>
+            <label>اللون<select id="colorInput"><option value="blue">أزرق</option><option value="purple">بنفسجي</option><option value="green">أخضر</option></select></label>
+            <button class="auth-submit schedule-submit" type="submit"><i data-lucide="plus"></i> إضافة إلى الجدول</button>
+          </form>
+          <div class="schedule-entry-list" id="scheduleEntries"></div>
+        </article>
+        <article class="panel">
+          <div class="section-heading"><div><i data-lucide="calendar"></i><h2>جدولك الأسبوعي</h2></div><div class="tabs"><button class="tab active">أسبوعي</button><button class="tab">يومي</button><button class="tab">شهري</button></div></div>
+          <div class="schedule-grid" id="scheduleGrid"></div>
+        </article>
+        <div class="lower-grid">
+          <article class="panel tasks-panel"><div class="section-heading"><h2>المهام القريبة</h2><button class="text-btn" id="addTask">+ إضافة مهمة</button></div><div id="tasks"></div></article>
+          <article class="panel quote-panel"><i data-lucide="chart-no-axes-column-increasing"></i><h3>تذكير</h3><p>الاستمرارية تصنع الفرق، وليس الكمال.</p></article>
+        </div>
+      </section>
+
+
+      <section class="page" id="page-focus">
+        <div class="page-heading"><div><h1>وضع التركيز</h1><p class="muted">جلسة واحدة واضحة أفضل من ساعات مشتتة</p></div><span class="heading-icon"><i data-lucide="timer"></i></span></div>
+        <div class="focus-layout">
+          <article class="panel focus-panel">
+            <div class="focus-subject"><label for="focusTask">ماذا ستدرس؟</label><input id="focusTask" maxlength="100" placeholder="مثال: مراجعة درس الحلقات"></div>
+            <div class="timer-ring" id="timerRing"><div><strong id="timerDisplay">25:00</strong><span id="timerStatus">جاهز للبدء</span></div></div>
+            <div class="timer-presets"><button class="choice active" data-minutes="25">25 دقيقة</button><button class="choice" data-minutes="45">45 دقيقة</button><button class="choice" data-minutes="60">60 دقيقة</button></div>
+            <div class="timer-actions"><button class="auth-submit" id="timerStart"><i data-lucide="play"></i> ابدأ</button><button class="outline-btn" id="timerReset"><i data-lucide="rotate-ccw"></i> إعادة ضبط</button></div>
+            <p class="muted focus-note">يُسجّل وقت الجلسات المكتملة في إحصائياتك على هذا المتصفح.</p>
+          </article>
+          <article class="panel"><div class="section-heading"><div><i data-lucide="history"></i><h2>جلساتك الأخيرة</h2></div></div><div id="focusHistory" class="focus-history"></div></article>
+        </div>
+      </section>
+
+      <section class="page" id="page-library">
+        <div class="page-heading"><div><h1>المكتبة الدراسية</h1><p class="muted">اجمع ملفاتك وملاحظاتك الدراسية في مكان واحد</p></div><span class="heading-icon"><i data-lucide="library"></i></span></div>
+        <article class="panel library-upload">
+          <h2>أضف ملفًا أو ملاحظة</h2><p class="muted">يمكنك حفظ ملفاتك وملاحظاتك محليًا في هذا المتصفح.</p>
+          <form id="libraryForm" class="library-form">
+            <label>العنوان<input id="libraryTitle" required maxlength="100" placeholder="مثال: ملخص الخوارزميات"></label>
+            <label>المادة<input id="librarySubject" required maxlength="60" placeholder="مثال: إعلام آلي"></label>
+            <label>نوع العنصر<select id="libraryType"><option value="note">ملاحظة</option><option value="file">ملف</option></select></label>
+            <label class="file-field">اختيار ملف<input id="libraryFile" type="file" accept=".pdf,.txt,.md,.doc,.docx,.ppt,.pptx,.png,.jpg,.jpeg" /></label>
+            <label class="library-note-field">محتوى الملاحظة<textarea id="libraryContent" rows="3" maxlength="10000" placeholder="اكتب ملاحظاتك هنا..."></textarea></label>
+            <button class="auth-submit" type="submit"><i data-lucide="plus"></i> حفظ في المكتبة</button>
+          </form>
+        </article>
+        <article class="panel">
+          <div class="section-heading"><div><i data-lucide="folder-open"></i><h2>مواردي</h2></div><input id="librarySearch" class="inline-search" placeholder="ابحث في المكتبة..." /></div>
+          <div id="libraryList" class="library-list"></div>
+        </article>
+      </section>
+      <section class="page" id="page-exams">
+        <div class="page-heading"><div><h1>الاختبارات</h1><p class="muted">تدرب على اختباراتك وقيّم مستواك</p></div><span class="heading-icon"><i data-lucide="clipboard-check"></i></span></div>
+        <div class="stats-grid compact exam-stats">
+          <article class="stat-card blue"><h3>معدل النجاح</h3><div class="stat-value">78%</div><div class="progress"><span style="width:78%"></span></div></article>
+          <article class="stat-card purple"><h3>إجمالي الاختبارات</h3><div class="stat-value">6</div></article>
+          <article class="stat-card green"><h3>المكتملة</h3><div class="stat-value">4</div></article>
+          <article class="stat-card amber"><h3>قيد الإنجاز</h3><div class="stat-value">2</div></article>
+        </div>
+        <div class="tabs filter-tabs"><button class="tab active" data-filter="all">الكل</button><button class="tab" data-filter="done">مكتملة</button><button class="tab" data-filter="todo">قيد الإنجاز</button></div>
+        <div class="exam-list" id="examList"></div>
+      </section>
+
+      <section class="page" id="page-settings">
+        <div class="page-heading"><div><h1>الإعدادات</h1><p class="muted">خصص تجربتك بما يناسبك</p></div><span class="heading-icon"><i data-lucide="settings"></i></span></div>
+        <div class="settings-grid">
+          <article class="panel setting-card"><h2>🎨 المظهر</h2><p class="muted">اختر المظهر الذي يناسبك</p><div class="choice-row"><button class="choice active" data-theme="dark">داكن</button><button class="choice" data-theme="light">فاتح</button></div><label class="setting-line">لون الواجهة <input type="color" id="accentColor" value="#0789f9"></label></article>
+          <article class="panel setting-card"><h2>🔔 الإشعارات</h2><p class="muted">اختر ما تريد استقباله</p><label class="setting-line">تذكيرات الدراسة <input type="checkbox" checked></label><label class="setting-line">نتائج الاختبارات <input type="checkbox" checked></label><label class="setting-line">تذكيرات الجدول <input type="checkbox" checked></label></article>
+          <article class="panel setting-card"><h2>🔐 الحساب والخصوصية</h2><p class="muted">إدارة حسابك وأمان بياناتك</p><label class="setting-line">اللغة <select id="language"><option>العربية</option><option>English</option><option>Français</option></select></label><button class="outline-btn" id="saveSettings">حفظ الإعدادات</button><p class="muted" id="settingsStatus"></p></article>
+          <article class="panel setting-card"><h2>📚 إعدادات الدراسة</h2><p class="muted">خصص طريقة الدراسة والتنبيهات</p><label class="setting-line">مدة جلسة الدراسة <select><option>25 دقيقة</option><option selected>45 دقيقة</option><option>60 دقيقة</option></select></label><label class="setting-line">مدة الاستراحة <select><option>5 دقائق</option><option>10 دقائق</option><option>15 دقيقة</option></select></label></article>
+        </div>
+      </section>
+
+      <section class="page" id="page-help">
+        <div class="page-heading"><div><h1>المساعدة</h1><p class="muted">هنا تجد الإجابات على أسئلتك ومساعدة في كل ما تحتاجه</p></div><span class="heading-icon"><i data-lucide="circle-help"></i></span></div>
+        <div class="quick-actions help-cards">
+          <button class="quick-card blue" data-scroll="#faq"><i data-lucide="book-open"></i><span><b>الأسئلة الشائعة</b><small>أكثر الأسئلة شيوعاً</small></span></button>
+          <button class="quick-card cyan" data-scroll="#guide"><i data-lucide="play-circle"></i><span><b>دليل الاستخدام</b><small>شرح سريع للتطبيق</small></span></button>
+          <button class="quick-card purple" data-scroll="#contact"><i data-lucide="headphones"></i><span><b>تواصل معنا</b><small>للدعم والمساعدة</small></span></button>
+          <button class="quick-card amber" data-scroll="#tips"><i data-lucide="lightbulb"></i><span><b>نصائح مفيدة</b><small>لتحقيق أفضل النتائج</small></span></button>
+        </div>
+        <article class="panel faq-panel" id="faq"><h2>الأسئلة الشائعة</h2>
+          <details><summary>كيف أبدأ في استخدام Talaba AI؟</summary><p>ابدأ بإضافة موادك الدراسية، ثم أنشئ جدولاً واقعياً واطلب المساعدة من المساعد الذكي عند الحاجة.</p></details>
+          <details><summary>كيف أحسن من تركيزي في الدراسة؟</summary><p>قسّم الدراسة إلى جلسات قصيرة، أبعد المشتتات، وحدد هدفاً واضحاً لكل جلسة.</p></details>
+          <details><summary>ما هي نقاط الضعف؟</summary><p>هي الموضوعات التي تحتاج إلى مراجعة إضافية بناءً على نتائجك وتقييمك الذاتي.</p></details>
+          <details><summary>كيف أستخدم جدول التنظيم؟</summary><p>أضف مهامك ومواعيدك، ثم حدّث حالة المهمة عند إكمالها.</p></details>
+        </article>
+        <div class="lower-grid"><article class="panel" id="guide"><h2>دليل المستخدم</h2><p class="muted">تعرّف على ميزات التطبيق خطوة بخطوة.</p></article><article class="panel" id="contact"><h2>تواصل معنا</h2><p class="muted">هذه واجهة تجريبية؛ اربطها بخدمة الدعم عند تجهيز الـ Backend.</p><button class="outline-btn" id="contactBtn">إرسال رسالة</button></article></div>
+        <article class="panel" id="tips"><h2>نصيحة اليوم</h2><p>ابدأ بخطوة صغيرة تستطيع الالتزام بها، ثم زدها تدريجياً.</p></article>
+      </section>
+
+      <section class="page" id="page-account">
+        <div class="page-heading"><div><h1>الحساب الشخصي</h1><p class="muted">معلومات حسابك وإعداداتك</p></div><span class="heading-icon"><i data-lucide="circle-user-round"></i></span></div>
+        <article class="panel profile-panel"><div class="profile-top"><div class="avatar large">👤</div><div><h2 id="profileName">NAME</h2><p class="muted" id="profileLevelSummary">طالب — لم يُحدّد المستوى</p></div><button class="outline-btn" id="editProfile">تعديل الملف الشخصي</button></div><div class="profile-details"><div><b>البريد الإلكتروني</b><p id="accountEmail">—</p></div><div><b>المستوى الدراسي</b><p id="accountLevel">لم يُحدّد</p></div><div><b>تاريخ الانضمام</b><p id="joinDate">—</p></div></div><div class="account-actions"><button class="outline-btn" data-go="settings">إدارة الإعدادات</button><button class="outline-btn danger-btn" id="logoutBtn">تسجيل الخروج</button></div></article>
+      </section>
+
+      <footer class="footer">Talaba AI <span>•</span> خطوتك الصغيرة نحو نجاح أكبر</footer>
+    </main>
+  </div>
+  <div class="toast" id="toast" role="status"></div>
+  <div class="modal-backdrop hidden" id="quizModal" role="dialog" aria-modal="true" aria-labelledby="quizTitle">
+    <div class="modal-card"><div class="section-heading"><h2 id="quizTitle">اختبار تدريبي</h2><button class="icon-btn" id="closeQuiz" aria-label="إغلاق">×</button></div><p id="quizProgress" class="muted"></p><div id="quizBody"></div><div class="modal-actions"><button class="outline-btn" id="cancelQuiz">إنهاء لاحقًا</button><button class="auth-submit" id="submitAnswer">تحقق من الإجابة</button><button class="auth-submit hidden" id="nextQuestion">السؤال التالي</button></div><p id="quizFeedback" class="quiz-feedback"></p></div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
