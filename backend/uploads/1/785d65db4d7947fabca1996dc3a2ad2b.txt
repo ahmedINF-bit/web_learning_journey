@@ -1,0 +1,3 @@
+Talaba AI is an intelligent study assistant.
+It helps students summarize lessons.
+It can answer questions about uploaded documents.
